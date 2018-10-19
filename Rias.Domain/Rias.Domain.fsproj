@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Rias.Common\Common.fs" />
+    <Compile Include="AggregateTypes.fs" />
+    <Compile Include="StateBox.fs" />
+    <Compile Include="EventBox.fs" />
+    <Compile Include="Aggregate.fs" />
+    <Compile Include="BookRoot.fs" />
+    <Compile Include="AccoutingRoot.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.5.2" />
+    <PackageReference Update="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>
