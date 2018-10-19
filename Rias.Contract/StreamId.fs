@@ -1,11 +1,11 @@
 ﻿namespace Rias.Domain
 
 [<AutoOpen>]
-module AggregateContract =
+module StreamIdContract =
 
-    type AggreagetName = string
-    type AggreagetUniqueId = string
-    type StreamId = private StreamId of AggreagetName * AggreagetUniqueId
+    type StreamName = string
+    type StreamUniqueId = string
+    type StreamId = private StreamId of StreamName * StreamUniqueId
 
     module StreamId =
         open System
@@ -24,26 +24,3 @@ module AggregateContract =
                 match Array.tryFind String.IsNullOrWhiteSpace parts with
                 | None -> StreamId (parts.[0], parts.[1]) |> Ok
                 | _ -> error ()
-
-    type Aggregate<'state, 'command, 'event> = {
-        Zero: 'state
-        Execute: 'state -> 'command -> Result<'event list, string>
-        Apply: 'state -> 'event -> Result<'state, string>
-    }
-
-    type StateBox<'state> = {
-        StreamId: StreamId option
-        Version: int
-        State: 'state
-    }
-
-    type CommandBox<'command> = {
-        StreamId: StreamId
-        Command: 'command
-    }
-
-    type EventBox<'event> = {
-        Version: int
-        StreamId: StreamId
-        Event: 'event
-    }

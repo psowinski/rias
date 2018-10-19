@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Storage.fs" />
+    <Compile Include="InMemory.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rias.Contract\Rias.Contract.fsproj" />
   </ItemGroup>
 
   <ItemGroup>

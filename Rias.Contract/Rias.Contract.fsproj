@@ -5,16 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\Rias.Common\Common.fs" />
-    <Compile Include="StateBox.fs" />
-    <Compile Include="EventBox.fs" />
+    <Compile Include="StreamId.fs" />
     <Compile Include="Aggregate.fs" />
-    <Compile Include="BookRoot.fs" />
-    <Compile Include="AccoutingRoot.fs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Rias.Contract\Rias.Contract.fsproj" />
+    <Compile Include="Storage.fs" />
   </ItemGroup>
 
   <ItemGroup>
