@@ -3,6 +3,7 @@
 module AccountingTransactionRoot =
     open System
     open Rias.Common
+    open Rias.Contract.Domain
 
     type AccountSymbol = AccountSymbol of string
     type AccountSide = Debet | Credit

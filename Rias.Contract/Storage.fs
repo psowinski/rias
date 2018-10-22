@@ -1,8 +1,8 @@
-﻿namespace Rias.Persistence
+﻿namespace Rias.Contract.Persistence
 
 [<AutoOpen>]
 module StorageContract =
-    open Rias.Domain
+    open Rias.Contract.Domain
 
     type Storage<'event> = {
         Store: 'event seq -> Result<unit, string>

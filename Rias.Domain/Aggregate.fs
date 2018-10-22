@@ -3,6 +3,7 @@
 [<AutoOpen>]
 module Aggregate =
     open Rias.Common
+    open Rias.Contract.Domain
 
     let errsc (state: StateBox<'state>) (command: CommandBox<'command>) msg =
         Error (sprintf "%s. State: %A, Command: %A" msg state command)

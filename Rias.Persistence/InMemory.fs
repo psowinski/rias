@@ -1,7 +1,8 @@
 ﻿namespace Rias.Persistence
 
 module InMemory =
-    open Rias.Domain
+    open Rias.Contract.Domain
+    open Rias.Contract.Persistence
 
     let create<'event> () =
         let collection = ResizeArray<EventBox<'event>>()

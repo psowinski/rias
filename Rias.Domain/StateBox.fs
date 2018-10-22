@@ -2,6 +2,7 @@
 
 module StateBox =
     open Rias.Common
+    open Rias.Contract.Domain
 
     let zero zeroState = 
         { StreamId = None; Version = 0; State = zeroState }

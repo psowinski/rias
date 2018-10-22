@@ -1,4 +1,4 @@
-﻿namespace Rias.Domain
+﻿namespace Rias.Contract.Domain
 
 [<AutoOpen>]
 module AggregateContract =
