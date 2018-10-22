@@ -9,6 +9,8 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Rias.Contract", "Rias.Contr
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Rias.Persistence", "Rias.Persistence\Rias.Persistence.fsproj", "{B84016DB-ECB8-44B6-9D6B-1B6F1F74F7E9}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rias.App", "Rias.App\Rias.App.fsproj", "{74591580-B4D0-40F4-836D-614A29D848E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B84016DB-ECB8-44B6-9D6B-1B6F1F74F7E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B84016DB-ECB8-44B6-9D6B-1B6F1F74F7E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B84016DB-ECB8-44B6-9D6B-1B6F1F74F7E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74591580-B4D0-40F4-836D-614A29D848E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74591580-B4D0-40F4-836D-614A29D848E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74591580-B4D0-40F4-836D-614A29D848E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74591580-B4D0-40F4-836D-614A29D848E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

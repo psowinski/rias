@@ -1,5 +1,14 @@
 ﻿namespace Rias.Common
 
+module Result =
+    let okValue = function
+    | Ok v -> v
+    | Error _ -> failwith "Ther is no ok value."
+
+    let errorValue = function
+    | Ok _ -> failwith "Ther is no error value."
+    | Error v -> v
+
 [<AutoOpen>]
 module Railway =
 
