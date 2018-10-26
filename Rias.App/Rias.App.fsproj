@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="StreamId.fs" />
     <Compile Include="..\Rias.Common\Common.fs" Link="Common.fs" />
     <Compile Include="App.fs" />
     <Compile Include="Program.fs" />
