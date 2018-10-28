@@ -1,7 +1,6 @@
 ﻿open Rias.Contract.Domain
 open Rias.Domain
 open Rias.Persistence
-open Rias
 open Rias.App
 open Rias.Common
 open System
