@@ -1,10 +1,10 @@
-﻿namespace Rias
+﻿namespace Rias.App
 
-module App =
+module WriteSide =
     open Rias.Common
-    open Rias.Contract.Persistence
     open Rias.Contract.Domain
-
+    open Rias.Contract.Persistence
+    
     let getCurrentState aggregate storage streamId = 
         result {
             let! events = storage.Load streamId

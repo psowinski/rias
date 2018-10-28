@@ -13,7 +13,7 @@ let main argv =
     let openCmd = { StreamId = (StreamId.generate "book") |> Result.okValue
                     Command =  BookRoot.Command.OpenNewBook { Name = "my book"; Date = DateTime.Parse("2018-10-10")}}
 
-    let events = App.handleCommand 
+    let events = WriteSide.handleCommand 
                     BookRoot.aggregate 
                     bookStorage 
                     openCmd
