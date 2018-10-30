@@ -8,7 +8,7 @@ module WriteSide =
     let getCurrentState aggregate storage streamId = 
         result {
             let! events = storage.Load streamId
-            let! state = events |> Seq.fold (bind1of2 aggregate.Apply) (Ok aggregate.Zero)
+            let! state = events |> Seq.fold (Result.bind1of2 aggregate.Apply) (Ok aggregate.Zero)
             return state
         }
 

@@ -43,7 +43,7 @@ module AccountingTransactionRoot =
                  Frozen = false }
 
     let isTransactionOpen (state: StateBox<AccountingTransaction>) =
-        state.Version > 0 && state.State.Frozen = false
+        state.Version > 0 && not state.State.Frozen
 
     let areOperationsComplete operations = 
         let sum predicate = 
@@ -61,19 +61,19 @@ module AccountingTransactionRoot =
     let validateOperationsCompletnes state = if areOperationsComplete state.State.Operations then Ok state
                                              else Error "Transaction sides not equal"
 
-    let validateCloseTransaction = validateOpenTransaction >> bind validateOperationsCompletnes
+    let validateCloseTransaction = validateOpenTransaction >> Result.bind validateOperationsCompletnes
 
     let execute box validateZero state command =
         match command.Command with
         | OpenTransaction args -> state |> validateZero
-                                        |> map (fun _ -> TransactionOpened args)
+                                        |> Result.map (fun _ -> TransactionOpened args)
 
         | AddOperation args ->  state |> validateOpenTransaction
-                                      |> map (fun _ -> OperationAdded args) 
+                                      |> Result.map (fun _ -> OperationAdded args) 
 
         | CloseTransaction -> state |> validateCloseTransaction
-                                    |> map (fun _ -> TransactionClosed state.State.BookId.Value) 
-        |> map (box state command)
+                                    |> Result.map (fun _ -> TransactionClosed state.State.BookId.Value) 
+        |> Result.map (box state command)
 
     let apply state event =
         match event.Event with

@@ -42,14 +42,14 @@ module BookRoot =
     let execute box validateZero state (command: CommandBox<Command>) =
         match command.Command with 
         | OpenNewBook args -> state |> validateZero
-                                    |> map (fun _ -> BookOpened args)
+                                    |> Result.map (fun _ -> BookOpened args)
 
         | AccountTransaction args -> validateIsTransactionAfterOpenDate state.State args.AccountingDate
-                                     |> map (fun _ -> TransactionAccounted { 
+                                     |> Result.map (fun _ -> TransactionAccounted { 
                                                         OrdinalNumber = nextOrdinalNumber state.State
                                                         AccountingDate = args.AccountingDate
                                                         TransactionId = args.TransactionId })
-        |> map (box state command)
+        |> Result.map (box state command)
 
     let apply state event =
         match event.Event with

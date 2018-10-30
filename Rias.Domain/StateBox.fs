@@ -22,5 +22,5 @@ module StateBox =
 
     let apply fapply (state: StateBox<'state>) (event: EventBox<'event>) =
         event |> validateSequence state 
-                |> bind (fapply state.State)
-                |> map (nextStateBox state)
+                |> Result.bind (fapply state.State)
+                |> Result.map (nextStateBox state)
