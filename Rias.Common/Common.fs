@@ -4,10 +4,10 @@
 module Result =
     let okValue = function
     | Ok v -> v
-    | Error _ -> failwith "Ther is no ok value."
+    | Error _ -> failwith "There is no OK value."
 
     let errorValue = function
-    | Ok _ -> failwith "Ther is no error value."
+    | Ok _ -> failwith "There is no Error value."
     | Error v -> v
 
     let bind1of2 f x y =
