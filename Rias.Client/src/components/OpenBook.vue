@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3 v-if="seen">Open new book</h3>
-    <p>Book name: <input type="text" /></p>
-    <p>Book start date: <input type="text" /></p>
-    <p><button>Open</button></p>
+    <h3>Open new book</h3>
+    <p>Book name: <input type="text" v-model="book.name"/></p>
+    <p>Book start date: <input type="date"  v-model="book.date"/></p>
+    <p><button @click="openBook">Open</button></p>
   </div>
 </template>
 
@@ -11,8 +11,15 @@
 export default {
   name: 'OpenBook',
   data () { return {
-      seen: true
-  }}
+      book: {
+        name: "",
+        date: ""
+  }}},
+  methods: {
+      openBook () {
+          this.$emit('bookOpen', this.book);
+      }
+  }
 }
 </script>
 

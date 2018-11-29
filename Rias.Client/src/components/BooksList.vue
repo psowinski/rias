@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Books list</h3>
+    <h3><img alt="Vue logo" src="../assets/logo.png">Books list</h3>
     <ol>
         <li v-for="book in books" :key="book">
         {{ book }}
@@ -13,13 +13,7 @@
 <script>
 export default {
   name: 'BooksList',
-  data() { return {
-      books: [
-          "Book 1",
-          "Book 2",
-          "Book 3"
-      ]
-  }}
+  props: ['books']
 }
 </script>
 
@@ -30,5 +24,10 @@ div {
 }
 li {
   margin: 10px 0px;
+}
+
+img {
+  width:25px;
+  height:25px;
 }
 </style>

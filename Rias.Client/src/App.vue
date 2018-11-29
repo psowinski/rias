@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" id="logo">
-    <OpenBook/>
-    <BooksList/>
+    <OpenBook class="component" v-on:bookOpen="onBookOpen"/>
+    <BooksList class="component" v-bind:books="books"/>
   </div>
 </template>
 
@@ -12,6 +11,18 @@ import BooksList from './components/BooksList.vue'
 
 export default {
   name: 'app',
+  data () { return {
+      books: [
+          "Book 1",
+          "Book 2",
+          "Book 3"
+      ]
+  }},
+  methods: {
+    onBookOpen: function (book) {
+      this.books.push(book.name);
+    }
+  },
   components: {
     OpenBook, BooksList
   }
@@ -28,8 +39,7 @@ export default {
   margin-top: 60px;
 }
 
-#logo {
-  width:25px;
-  height:25px;
+.component {
+  margin: 5px;
 }
 </style>
