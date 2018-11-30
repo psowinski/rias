@@ -5,4 +5,4 @@ module StreamId =
     open Rias.Contract.Domain
 
     let generate name =
-        StreamId.create name (Guid.NewGuid.ToString())
+        StreamId.create name (Guid.NewGuid().ToString())
