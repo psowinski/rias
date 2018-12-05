@@ -13,11 +13,11 @@ export default {
   data () { return {
       book: {
         name: "",
-        date: ""
+        date: new Date().toISOString().substring(0, 10)
   }}},
   methods: {
       openBook () {
-          this.$emit('bookOpen', this.book);
+          this.$store.commit('books/addBook', this.book);
       }
   }
 }

@@ -11,18 +11,6 @@ import BooksList from './components/BooksList.vue'
 
 export default {
   name: 'app',
-  data () { return {
-      books: [
-          "Book A",
-          "Book B",
-          "Book C"
-      ]
-  }},
-  methods: {
-    onBookOpen: function (book) {
-      this.books.push(book.name);
-    }
-  },
   components: {
     OpenBook, BooksList
   }

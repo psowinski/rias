@@ -1,3 +1,5 @@
+import equals from './equals'
+
 const state = {
     items: [
         {name: "Book 1", date: "2018-01-01"},
@@ -5,10 +7,10 @@ const state = {
         {name: "Book 3", date: "2018-08-08"}
     ]
 }
-
 const mutations = {
-    openBook (state, { name }) {
-      state.books.push(name);
+    addBook (state, book) {
+        if(!state.items.find(x => equals(x, book)))
+            state.items.push({...book});
     }
 }
 
