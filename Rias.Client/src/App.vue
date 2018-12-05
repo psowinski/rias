@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <OpenBook class="component" v-on:bookOpen="onBookOpen"/>
-    <BooksList class="component" v-bind:books="books"/>
+    <OpenBook class="component" />
+    <BooksList class="component" />
   </div>
 </template>
 
@@ -13,9 +13,9 @@ export default {
   name: 'app',
   data () { return {
       books: [
-          "Book 1",
-          "Book 2",
-          "Book 3"
+          "Book A",
+          "Book B",
+          "Book C"
       ]
   }},
   methods: {
