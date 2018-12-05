@@ -10,16 +10,16 @@ using Newtonsoft.Json;
 
 namespace Rias.Infrastructure
 {
-    public static class getBooksList
+    public static class getAllBooks
     {
-        [FunctionName("getBooksList")]
+        [FunctionName("getAllBooks")]
         public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "books")] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("Fired /books");
 
-            var books = new string[] { "Book 1", "Book A", "Book ALA" };
+            var books = new string[] { "Book F1", "Book F2", "Book F3" };
             var booksJson = JsonConvert.SerializeObject(books);
             return (ActionResult)new OkObjectResult(booksJson);
         }
