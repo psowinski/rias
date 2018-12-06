@@ -19,9 +19,13 @@ namespace Rias.Infrastructure
         {
             log.LogInformation("Fired /books");
 
-            var books = new string[] { "Book F1", "Book F2", "Book F3" };
-            var booksJson = JsonConvert.SerializeObject(books);
-            return (ActionResult)new OkObjectResult(booksJson);
+            var books = new [] { 
+                new { name = "Book F1", date = "2018-10-01" },
+                new { name = "Book F2", date = "2018-10-02" },
+                new { name = "Book F3", date = "2018-10-03" }
+                };
+                
+            return new JsonResult(books);
         }
     }
 }

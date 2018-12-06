@@ -19,7 +19,10 @@ export default {
     ...mapGetters({
        books: 'books/names'
     })
-  }
+  },
+  created() {
+    this.$store.dispatch('books/getAllBooks')
+  }    
 }
 </script>
 

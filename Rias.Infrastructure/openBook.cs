@@ -20,7 +20,7 @@ namespace Rias.Infrastructure
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
 
-            return (ActionResult)new OkResult();
+            return new OkResult();
         }
     }
 }
