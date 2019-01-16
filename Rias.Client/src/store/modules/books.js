@@ -7,10 +7,9 @@ const state = {
 
 const mutations = {
     addBook (state, book) {
-        if(!state.items.find(x => equals(x, book)))
-            state.items.push({...book});
+        state.items.push({...book});
     },
-    addBooks (state, books) {
+    setBooks (state, books) {
         state.items = books;
     }
 }
@@ -24,12 +23,26 @@ const getters = {
 const actions = {
     async getAllBooks({commit}) {
         try {
-            const books = await api.getAllBooks();
-            commit('addBooks', books);
+            const data = await api.getAllBooks();
+            commit('setBooks', data.books);
         }
         catch(err) {
-            // eslint-disable-next-line 
-            console.log('nie polaczylem sie\n' + err);
+            // eslint-disable-next-line
+            console.log('getAllBooks faild: ' + err);
+        }
+    },
+
+    async openBook({commit, state}, book) {
+        if(!state.items.find(x => equals(x, book)))
+        {
+            try {
+                await api.openBook(book);
+                commit('addBook', book);
+            }
+            catch(err) {
+                // eslint-disable-next-line
+                console.log('openBook faild: ' + err);
+            }
         }
     }
 }

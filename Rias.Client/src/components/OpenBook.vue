@@ -17,7 +17,7 @@ export default {
   }}},
   methods: {
       openBook () {
-          this.$store.commit('books/addBook', this.book);
+          this.$store.dispatch('books/openBook', this.book)
       }
   }
 }

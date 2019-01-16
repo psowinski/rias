@@ -9,6 +9,6 @@ export default {
     },
 
     async openBook(book) {
-        await axios.post(apiurl('books/open'), JSON.stringify(book));
+        await axios.post(apiurl('books/open'), book);
     }
 }
