@@ -1,6 +1,6 @@
 ﻿namespace Rias.App
 
-module WriteSide =
+module WriteSideProcessing =
     open Rias.Common
     open Rias.Contract.Domain
     open Rias.Contract.Persistence

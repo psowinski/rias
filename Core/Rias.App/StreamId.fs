@@ -1,8 +1,7 @@
-﻿namespace Rias.App
+﻿module Rias.App.StreamId
 
-module StreamId =
-    open System
-    open Rias.Contract.Domain
+open System
+open Rias.Contract.Domain
 
-    let generate name =
-        StreamId.create name (Guid.NewGuid().ToString())
+let generate name =
+    StreamId.create name (Guid.NewGuid().ToString())
