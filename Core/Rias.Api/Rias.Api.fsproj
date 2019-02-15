@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Rias.App\Rias.App.fsproj" />
+    <ProjectReference Include="..\Rias.Domain\Rias.Domain.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="Library.fs" />
   </ItemGroup>
 
