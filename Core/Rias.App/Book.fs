@@ -19,4 +19,4 @@ module Book =
                         bookStorage 
                         openCmd
 
-        0
+        ()

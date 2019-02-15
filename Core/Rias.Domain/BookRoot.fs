@@ -25,6 +25,11 @@ module BookRoot =
     | BookOpened of Args.OpenNewBookArgs
     | TransactionAccounted of Transaction
 
+    let getEventName event =
+        match event with
+        | BookOpened _ -> "BookOpened"
+        | TransactionAccounted _ -> "TransactionAccounted"
+
     let nextOrdinalNumber state = 
         match state.Transactions with
             | [] -> 1

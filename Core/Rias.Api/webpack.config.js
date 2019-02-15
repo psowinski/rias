@@ -16,7 +16,7 @@ console.log("Bundling for " + (isProduction ? "production" : "development") + ".
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   devtool: "source-map",
-  entry: resolve('./project.fsproj'),
+  entry: resolve('./Rias.Api.fsproj'),
   output: {
     filename: 'bundle.js',
     path: resolve('./dist'),

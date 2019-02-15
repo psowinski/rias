@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Rias.Common\Rias.Common.fsproj" />
     <ProjectReference Include="..\Rias.Contract\Rias.Contract.fsproj" />
     <ProjectReference Include="..\Rias.Domain\Rias.Domain.fsproj" />
     <ProjectReference Include="..\Rias.Persistence\Rias.Persistence.fsproj" />
@@ -12,7 +13,6 @@
 
   <ItemGroup>
     <Compile Include="StreamId.fs" />
-    <Compile Include="..\Rias.Common\Common.fs" Link="Common.fs" />
     <Compile Include="WriteSideProcessing.fs" />
     <Compile Include="Book.fs" />
   </ItemGroup>

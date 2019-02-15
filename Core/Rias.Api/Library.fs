@@ -1,3 +1,3 @@
 module Rias.Api
-let hello name =
-    printfn "Hello %s" name
+let OpenNewBook = Rias.App.Book.OpenNewBook
+let tutaj = Rias.Domain.TestJSON.data
