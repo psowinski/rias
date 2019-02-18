@@ -1,68 +1,49 @@
 namespace Rias.Domain
 
-open System.Transactions
-module BookDto =
+module DomainDto =
     open Rias.Contract.Domain
+    open Data
     open System
+
+    let asNumber x = Dto.Number (float x)
+    let asString x = Dto.String x
+    let asMap x = x |> Map.ofList |> Dto.Map
+    let asDate (x: DateTime) = x.ToShortDateString() |> Dto.String
+    let asStreamId x = x |> StreamId.toString |> Dto.String
+    let asProperty (name, value) = Map.empty.Add(name, value) |> Dto.Map
+
+module EventDto =
+    open Rias.Contract.Domain
+    open DomainDto
+
+    let eventToDto dataToDto (event : EventBox<'event>) =
+        [ ("streamId", event.StreamId |> asStreamId)
+          ("version", event.Version |> asNumber)
+          ("event", dataToDto event.Event)]
+        |> asMap
+
+module BookDto =
     open BookRoot
+    open DomainDto
 
-    type EventBoxDto<'event> = {
-        streamId: string
-        version: int
-        event: 'event        
-    }
-
-    let toDtoEvent dataToDto (event : EventBox<'event>) : EventBoxDto<'eventdto> =
-        {
-            streamId = StreamId.toString(event.StreamId)
-            version = event.Version
-            event = dataToDto event.Event
-        }
-
-    type BookOpenedDto = {
-        name: string
-        date: string
-    }
-
-    type TransactionAccountedDto = {
-        ordinalNumber: int
-        accountingDate: string
-        transactionId: string
-    }
-
-    type BookEventDto = {
-        name: string
-        bookOpened: BookEventDto option
-        transactionAccounted: TransactionAccountedDto option
-    }
+    let asOrdinalNumber x = x |> OrdinalNumber.value |> asNumber
 
     let bookOpenedToDto (data: Args.OpenNewBookArgs) =
-        {
-            name = data.Name
-            date = data.Date.ToShortDateString()
-        }
+        [ ("name", data.Name |> asString)
+          ("date", data.Date |> asDate)]
+        |> asMap
 
     let transactionAccountedToDto (data: Transaction) =
-        {
-            ordinalNumber = data.OrdinalNumber |> fun (OrdinalNumber v) -> v
-            accountingDate = data.AccountingDate.ToShortDateString() 
-            transactionId = StreamId.toString data.TransactionId
-        }
+        [ ("ordinalNumber", data.OrdinalNumber |> asOrdinalNumber)
+          ("accountingDate", data.AccountingDate |> asDate)
+          ("transactionId", data.TransactionId |> asStreamId)]
+        |> asMap
 
-    let bookEventToDto (event : Event) =
+    let bookEventDataToDto (event : Event) =
         match event with
-        | BookRoot.BookOpened data -> { name = "BookRoot.OpenNewBook"
-                                        bookOpened = None
-                                        transactionAccounted = None
-                                      }
-        | _ -> failwith ""
+        | BookOpened data -> ("BookOpened", bookOpenedToDto data)
+        | TransactionAccounted tdata -> ("TransactionAccounted", transactionAccountedToDto tdata)
+        |> asProperty
 
-
-module TestJSON =
-    open Fable.SimpleJson
-    open System
-    let data () = 
-        [ "name", JString "ala"
-          "age", JNumber 21.0 ]
-        |> Map.ofList
-        |> JObject
+    module api =
+        let bookEventToDto = EventDto.eventToDto bookEventDataToDto

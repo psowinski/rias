@@ -5,8 +5,13 @@ module BookRoot =
     open Rias.Common
     open Rias.Contract.Domain
 
-    type OrdinalNumber = OrdinalNumber of int
+    type OrdinalNumber = private OrdinalNumber of int
     type Transaction = { OrdinalNumber: OrdinalNumber; AccountingDate: DateTime; TransactionId: StreamId }
+
+    module OrdinalNumber =
+        let value (OrdinalNumber x) = x
+        let first () = OrdinalNumber 1
+        let next (OrdinalNumber x) = x + 1 |> OrdinalNumber
 
     module Args =
         type OpenNewBookArgs = { Name: string; Date: DateTime; }
@@ -18,12 +23,12 @@ module BookRoot =
         Transactions: Transaction list }
 
     type Command =
-    | OpenNewBook of Args.OpenNewBookArgs
-    | AccountTransaction of Args.AccountTransactionArgs
+        | OpenNewBook of Args.OpenNewBookArgs
+        | AccountTransaction of Args.AccountTransactionArgs
 
     type Event =
-    | BookOpened of Args.OpenNewBookArgs
-    | TransactionAccounted of Transaction
+        | BookOpened of Args.OpenNewBookArgs
+        | TransactionAccounted of Transaction
 
     let getEventName event =
         match event with
@@ -32,9 +37,8 @@ module BookRoot =
 
     let nextOrdinalNumber state = 
         match state.Transactions with
-            | [] -> 1
-            | x::_ -> x.OrdinalNumber |> (function | OrdinalNumber v -> v + 1)
-        |> OrdinalNumber
+        | [] -> OrdinalNumber.first ()
+        | x::_ -> OrdinalNumber.next x.OrdinalNumber
 
     let validateIsTransactionAfterOpenDate state transactionDate =
         match state.OpenDate with
