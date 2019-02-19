@@ -3,6 +3,7 @@ var output = "../../dist"
 
 var path = require("path");
 var webpack = require("webpack");
+var nodeExternals = require('webpack-node-externals')
 
 function resolve(filePath) {
   return path.join(__dirname, filePath)
@@ -20,6 +21,8 @@ module.exports = {
   mode: isProduction ? 'production' : 'development',
   devtool: "source-map",
   entry: resolve(input),
+  target: 'node',
+  externals: [nodeExternals()],
   output: {
     filename: 'bundle.js',
     path: resolve(output),
