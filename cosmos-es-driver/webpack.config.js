@@ -1,5 +1,6 @@
 var path = require("path");
 var webpack = require("webpack");
+var nodeExternals = require('webpack-node-externals')
 
 function resolve(filePath) {
   return path.join(__dirname, filePath)
@@ -18,6 +19,7 @@ module.exports = {
   devtool: "source-map",
   entry: ['@babel/polyfill', resolve('./index.js')],
   target: 'node',
+  externals: [nodeExternals()],
   output: {
     filename: 'bundle.js',
     path: resolve('./dist'),
