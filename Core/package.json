@@ -1,12 +1,12 @@
 {
   "name": "rias-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./dist/bundle.js",
   "license": "MIT",
   "scripts": {
-    "bundle": "webpack",
-    "watch": "webpack -w",
-    "build": "webpack -p"
+    "bundle": "webpack --config Rias.App/webpack.config.js",
+    "watch": "webpack -w --config Rias.App/webpack.config.js",
+    "build": "webpack -p --config Rias.App/webpack.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
