@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rias.Common", "Rias.Common\Rias.Common.fsproj", "{635FB9E8-0D70-4A27-8BD4-221C6FE64F1C}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rias.Common", "src\Rias.Common\Rias.Common.fsproj", "{635FB9E8-0D70-4A27-8BD4-221C6FE64F1C}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rias.Domain", "Rias.Domain\Rias.Domain.fsproj", "{277D7E51-8784-4BB6-966D-2D3300DAFA84}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rias.Domain", "src\Rias.Domain\Rias.Domain.fsproj", "{277D7E51-8784-4BB6-966D-2D3300DAFA84}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rias.Persistence", "Rias.Persistence\Rias.Persistence.fsproj", "{EE77D061-97DD-4961-8261-3E6E04CB3018}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rias.Persistence", "src\Rias.Persistence\Rias.Persistence.fsproj", "{EE77D061-97DD-4961-8261-3E6E04CB3018}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rias.App", "Rias.App\Rias.App.fsproj", "{238A3F65-2573-4343-8235-02598288B51E}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Rias.App", "src\Rias.App\Rias.App.fsproj", "{238A3F65-2573-4343-8235-02598288B51E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

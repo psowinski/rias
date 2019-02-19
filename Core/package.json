@@ -4,9 +4,9 @@
   "main": "./dist/bundle.js",
   "license": "MIT",
   "scripts": {
-    "bundle": "webpack --config Rias.App/webpack.config.js",
-    "watch": "webpack -w --config Rias.App/webpack.config.js",
-    "build": "webpack -p --config Rias.App/webpack.config.js"
+    "bundle": "webpack --config src/Rias.App/webpack.config.js",
+    "watch": "webpack -w --config src/Rias.App/webpack.config.js",
+    "build": "webpack -p --config src/Rias.App/webpack.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
@@ -19,6 +19,6 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "cosmos-es-driver": "./cosmos-es-driver/"
+    "cosmos-es-driver": "../cosmos-es-driver/"
   }
 }

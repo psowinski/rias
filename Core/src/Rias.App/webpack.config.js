@@ -1,4 +1,5 @@
-var proj = "./Rias.App.fsproj"
+var input = "./Rias.App.fsproj"
+var output = "../../dist"
 
 var path = require("path");
 var webpack = require("webpack");
@@ -18,10 +19,10 @@ console.log("Bundling for " + (isProduction ? "production" : "development") + ".
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   devtool: "source-map",
-  entry: resolve(proj),
+  entry: resolve(input),
   output: {
     filename: 'bundle.js',
-    path: resolve('../dist'),
+    path: resolve(output),
     library: "lib",
     libraryTarget: "commonjs2"
   },
