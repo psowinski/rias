@@ -2,11 +2,11 @@
 
 module AccountingTransactionRoot =
     open System
-    open Rias.Common
-    open Rias.Contract.Domain
 
     type AccountSymbol = AccountSymbol of string
-    type AccountSide = Debet | Credit
+    type AccountSide = 
+        | Debet 
+        | Credit
     type Operation = { Symbol: AccountSymbol; Side: AccountSide; Amount: decimal }
     type BookId = StreamId
 
@@ -26,14 +26,14 @@ module AccountingTransactionRoot =
           Frozen: bool }
         
     type Command =
-    | OpenTransaction of Args.OpenTransactionArgs
-    | AddOperation of Operation
-    | CloseTransaction
+        | OpenTransaction of Args.OpenTransactionArgs
+        | AddOperation of Operation
+        | CloseTransaction
 
     type Event =
-    | TransactionOpened of Args.OpenTransactionArgs
-    | OperationAdded of Operation
-    | TransactionClosed of BookId
+        | TransactionOpened of Args.OpenTransactionArgs
+        | OperationAdded of Operation
+        | TransactionClosed of BookId
 
     let zero = { BookId = None
                  RegistrationNumber = ""

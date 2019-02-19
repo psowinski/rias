@@ -5,16 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="InMemory.fs" />
+    <ProjectReference Include="..\Rias.Common\Rias.Common.fsproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Rias.Contract\Rias.Contract.fsproj" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Fable.SimpleJson" Version="2.9.0" />
     <PackageReference Include="FSharp.Core" Version="4.5.2" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Storage.fs" />
+    <Compile Include="InMemory.fs" />
+    <Compile Include="Dto.fs" />
   </ItemGroup>
 
 </Project>

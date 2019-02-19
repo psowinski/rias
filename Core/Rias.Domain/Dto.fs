@@ -1,8 +1,7 @@
 namespace Rias.Domain
 
 module DomainDto =
-    open Rias.Contract.Domain
-    open Data
+    open Rias.Common.Data
     open System
 
     let asNumber x = Dto.Number (float x)
@@ -13,7 +12,6 @@ module DomainDto =
     let asProperty (name, value) = Map.empty.Add(name, value) |> Dto.Map
 
 module EventDto =
-    open Rias.Contract.Domain
     open DomainDto
 
     let eventToDto dataToDto (event : EventBox<'event>) =

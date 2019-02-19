@@ -1,7 +1,7 @@
-﻿namespace Rias.Contract.Domain
+namespace Rias.Domain
 
 [<AutoOpen>]
-module AggregateContract =
+module AggregateTypes =
 
     type Aggregate<'state, 'command, 'event> = {
         Zero: 'state

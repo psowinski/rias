@@ -5,23 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fable.SimpleJson" Version="2.9.0" />
     <PackageReference Include="FSharp.Core" Version="4.5.2" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Rias.Contract\Rias.Contract.fsproj" />
     <ProjectReference Include="..\Rias.Common\Rias.Common.fsproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="StreamId.fs" />
+    <Compile Include="AggregateTypes.fs" />
     <Compile Include="StateBox.fs" />
     <Compile Include="EventBox.fs" />
     <Compile Include="Aggregate.fs" />
     <Compile Include="BookRoot.fs" />
     <Compile Include="AccoutingRoot.fs" />
-    <Compile Include="Data.fs" />
     <Compile Include="Dto.fs" />
   </ItemGroup>
 

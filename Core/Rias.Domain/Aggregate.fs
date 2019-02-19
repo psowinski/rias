@@ -2,8 +2,6 @@
 
 [<AutoOpen>]
 module Aggregate =
-    open Rias.Common
-    open Rias.Contract.Domain
 
     let scmsg (state: StateBox<'state>) (command: CommandBox<'command>) msg =
         sprintf "%s. State: %A, Command: %A" msg state command

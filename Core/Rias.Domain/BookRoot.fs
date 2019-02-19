@@ -2,8 +2,6 @@
 
 module BookRoot =
     open System
-    open Rias.Common
-    open Rias.Contract.Domain
 
     type OrdinalNumber = private OrdinalNumber of int
     type Transaction = { OrdinalNumber: OrdinalNumber; AccountingDate: DateTime; TransactionId: StreamId }

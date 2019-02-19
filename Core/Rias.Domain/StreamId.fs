@@ -1,7 +1,7 @@
-﻿namespace Rias.Contract.Domain
+﻿namespace Rias.Domain
 
 [<AutoOpen>]
-module StreamIdContract =
+module StreamIdentity =
 
     type StreamName = string
     type StreamUniqueId = string

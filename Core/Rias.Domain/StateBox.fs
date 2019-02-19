@@ -1,8 +1,7 @@
 ﻿namespace Rias.Domain
 
 module StateBox =
-    open Rias.Common
-    open Rias.Contract.Domain
+    open StreamIdentity
 
     let zero zeroState = 
         { StreamId = None; Version = 0; State = zeroState }
