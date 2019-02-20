@@ -12,7 +12,8 @@
 
   <ItemGroup>
     <Compile Include="StreamId.fs" />
-    <Compile Include="WriteSideProcessing.fs" />
+    <Compile Include="Processing.fs" />
+    <Compile Include="Storage.fs" />
     <Compile Include="Book.fs" />
     <Compile Include="Api.fs" />
   </ItemGroup>
