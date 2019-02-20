@@ -7,7 +7,7 @@ module WriteSideProcessing =
     
     let getCurrentState aggregate storage streamId = 
         result {
-            let! events = storage.Load (streamId |> StreamId.toString)
+            let! events = storage.load streamId
             let! state = events |> Seq.fold (Result.bind1of2 aggregate.Apply) (Ok aggregate.Zero)
             return state
         }
@@ -16,6 +16,6 @@ module WriteSideProcessing =
         result {
             let! state = getCurrentState aggregate storage command.StreamId
             let! events = aggregate.Execute state command
-            let! _ = storage.Store (Seq.cast events)
+            let! _ = storage.store (Seq.cast events)
             return events
         }

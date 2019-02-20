@@ -24,8 +24,5 @@ module InMemory =
                                        |> Seq.sortBy getVersion
                                        |> Ok
 
-        let storage = {
-            Store = store
-            Load = load
-        }
-        storage
+        { store = store
+          load = load }
