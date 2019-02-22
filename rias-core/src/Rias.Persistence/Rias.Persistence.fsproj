@@ -18,6 +18,7 @@
     <Compile Include="Storage.fs" />
     <Compile Include="InMemory.fs" />
     <Compile Include="Dto.fs" />
+    <Compile Include="Cosmos.fs" />
   </ItemGroup>
 
 </Project>

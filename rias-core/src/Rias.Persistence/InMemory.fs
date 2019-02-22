@@ -24,5 +24,5 @@ module InMemory =
                                        |> Seq.sortBy getVersion
                                        |> Ok
 
-        { store = store
-          load = load }
+        { store = fun x -> async { return store x }
+          load = fun x -> async { return load x } }

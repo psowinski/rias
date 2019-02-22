@@ -7,15 +7,17 @@ module Processing =
     
     let getCurrentState aggregate storage streamId = 
         result {
-            let! events = storage.load (streamId |> StreamId.toString)
-            let! state = events |> Seq.fold (Result.bind1of2 aggregate.Apply) (Ok aggregate.Zero)
-            return state
+            // let! events = storage.load (streamId |> StreamId.toString)
+            // let! state = events |> Seq.fold (Result.bind1of2 aggregate.Apply) (Ok aggregate.Zero)
+            // return state
+            return "not implemented"
         }
 
     let handleCommand aggregate storage (command: CommandBox<'command>) = 
         result {
-            let! state = getCurrentState aggregate storage command.StreamId
-            let! events = aggregate.Execute state command
-            let! _ = storage.store (Seq.cast events)
-            return events
+            // let! state = getCurrentState aggregate storage command.StreamId
+            // let! events = aggregate.Execute state command
+            // let! _ = storage.store (Seq.cast events)
+            // return events
+            return "not implemented"
         }

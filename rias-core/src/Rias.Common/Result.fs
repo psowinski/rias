@@ -15,15 +15,6 @@ module Result =
         | Ok arg -> f arg y
         | Error arg -> Error arg
 
-    // let leave list =
-    //   let rec unpack acc list =
-    //     match list with
-    //     | [] -> List.rev acc |> Ok
-    //     | x::xs -> match x with
-    //                | Ok ov -> unpack (ov::acc) xs
-    //                | Error ev -> Error ev
-    //   unpack [] list
-
     let leave seq =
       let unpack resAcc x =
         match resAcc with
@@ -34,6 +25,16 @@ module Result =
       
       seq |> Seq.fold unpack (Ok [])
           |> Result.map List.rev
+
+    let mapAsync mapping result = async {
+      let! x = result
+      return Result.map mapping x
+    }
+
+    let bindAsync binder result = async {
+      let! x = result
+      return Result.bind binder x
+    }
 
 [<AutoOpen>]
 module ResultBuilder =
