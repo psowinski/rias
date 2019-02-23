@@ -17,7 +17,7 @@ module Cosmos =
         let! cosmos = connectNative dbName |> Async.AwaitPromise
 
         let storage : Storage<Dto> = {
-            load = cosmos.load >> Async.AwaitPromise >> Result.mapAsync (Seq.map Dto.toDto)
+            load = cosmos.load >> Async.AwaitPromise >> Result.asyncMap (Seq.map Dto.toDto)
             store = Seq.map Dto.toJS >> cosmos.store >> Async.AwaitPromise
         }
         return storage

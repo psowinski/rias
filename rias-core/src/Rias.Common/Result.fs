@@ -26,15 +26,40 @@ module Result =
         seq |> Seq.fold unpack (Ok [])
             |> Result.map List.rev
 
-    let mapAsync mapping result = async {
+    let asyncMap mapping result = async {
         let! x = result
         return Result.map mapping x
     }
 
-    let bindAsync binder result = async {
+    let asyncBind binder result = async {
         let! x = result
         return Result.bind binder x
     }
+
+    let asyncBind1of2 f x y = async {
+        let! x = x
+        return bind1of2 f x y
+    }
+
+[<RequireQualifiedAccess>]
+module AsyncResult =
+    let bind f x = async {
+        let! x = x
+        match x with
+        | Ok ov -> return! f ov
+        | Error ev -> return Error ev
+    }
+
+    let map f x = async {
+        let! x = x
+        match x with
+        | Ok ov ->
+            let! fResult = f ov 
+            return Ok fResult
+        | Error ev ->
+            return Error ev
+    }
+
 
 [<AutoOpen>]
 module ResultBuilder =

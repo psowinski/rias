@@ -13,7 +13,12 @@ module Storage =
 
         let mapped = 
             {
-                load = storage.load >> Result.bindAsync asEvents
+                load = storage.load >> Result.asyncBind asEvents
                 store = Seq.map toDto >> storage.store
             }
         mapped
+
+    let asyncMap storage toDto toEvent = async {
+        let! storage = storage
+        return map storage toDto toEvent
+    }

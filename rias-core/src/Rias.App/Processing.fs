@@ -5,19 +5,15 @@ module Processing =
     open Rias.Domain
     open Rias.Persistence
     
-    let getCurrentState aggregate storage streamId = 
-        result {
-            // let! events = storage.load (streamId |> StreamId.toString)
-            // let! state = events |> Seq.fold (Result.bind1of2 aggregate.Apply) (Ok aggregate.Zero)
-            // return state
-            return "not implemented"
-        }
+    let getCurrentState aggregate storage streamId =
+        let applyEventsToState = Seq.fold (Result.bind1of2 aggregate.Apply) (Ok aggregate.Zero)
+        let events = storage.load (streamId |> StreamId.toString)
+        let state = events |> Result.asyncBind applyEventsToState
+        state 
 
     let handleCommand aggregate storage (command: CommandBox<'command>) = 
-        result {
-            // let! state = getCurrentState aggregate storage command.StreamId
-            // let! events = aggregate.Execute state command
-            // let! _ = storage.store (Seq.cast events)
-            // return events
-            return "not implemented"
-        }
+            let state = getCurrentState aggregate storage command.StreamId
+            let events = (Result.asyncBind1of2 aggregate.Execute) state command
+                       |> Result.asyncMap Seq.cast
+            let result = events |> AsyncResult.bind storage.store
+            result
