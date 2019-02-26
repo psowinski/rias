@@ -1,4 +1,5 @@
 ﻿namespace Rias.Common
+open PromiseImpl
 
 [<RequireQualifiedAccess>]
 module Result =
@@ -26,31 +27,31 @@ module Result =
         seq |> Seq.fold unpack (Ok [])
             |> Result.map List.rev
 
-    let asyncMap mapping result = async {
+    let promiseMap mapping result = promise {
         let! x = result
         return Result.map mapping x
     }
 
-    let asyncBind binder result = async {
+    let promiseBind binder result = promise {
         let! x = result
         return Result.bind binder x
     }
 
-    let asyncBind1of2 f x y = async {
+    let promiseBind1of2 f x y = promise {
         let! x = x
         return bind1of2 f x y
     }
 
 [<RequireQualifiedAccess>]
-module AsyncResult =
-    let bind f x = async {
+module PromiseResult =
+    let bind f x = promise {
         let! x = x
         match x with
         | Ok ov -> return! f ov
         | Error ev -> return Error ev
     }
 
-    let map f x = async {
+    let map f x = promise {
         let! x = x
         match x with
         | Ok ov ->

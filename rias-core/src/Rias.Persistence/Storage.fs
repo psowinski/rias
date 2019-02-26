@@ -3,8 +3,9 @@
 [<AutoOpen>]
 module StorageContract =
     open Rias.Common
+    open Fable.Import.JS
 
     type Storage<'T> = {
-        load: string -> Async<Result<seq<'T>, string>>
-        store: seq<'T> -> Async<Result<unit, string>>
+        load: string -> Promise<Result<seq<'T>, string>>
+        store: seq<'T> -> Promise<Result<unit, string>>
     }

@@ -2,23 +2,17 @@ namespace Rias.Persistence
 
 module Cosmos =
     open Rias.Common
-    open Fable.Core
     open Fable.Import.JS
+    open Fable.Core.JsInterop
 
-    type private NativeStorage = {
-        load: string -> Promise<Result<seq<obj>, string>>
-        store: seq<obj> -> Promise<Result<unit, string>>
-    }
+    let private connectNative: string -> Promise<Storage<obj>> = import "connect" "cosmos-es-driver"
 
-    [<Emit("connect($0)")>]
-    let private connectNative (dbName: string) : Promise<NativeStorage> = jsNative
-
-    let connect dbName = async {
-        let! cosmos = connectNative dbName |> Async.AwaitPromise
+    let connect dbName = promise {
+        let! cosmos = connectNative dbName
 
         let storage : Storage<Dto> = {
-            load = cosmos.load >> Async.AwaitPromise >> Result.asyncMap (Seq.map Dto.toDto)
-            store = Seq.map Dto.toJS >> cosmos.store >> Async.AwaitPromise
+            load = cosmos.load >> Result.promiseMap (Seq.map Dto.toDto)
+            store = Seq.map Dto.toJS >> cosmos.store
         }
         return storage
     }
