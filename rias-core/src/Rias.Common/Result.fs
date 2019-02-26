@@ -1,8 +1,9 @@
 ﻿namespace Rias.Common
-open PromiseImpl
 
 [<RequireQualifiedAccess>]
 module Result =
+    open PromiseImpl
+
     let okValue = (function
                  | Ok v -> v
                  | Error _ -> failwith "There is no Ok value.")
@@ -44,6 +45,8 @@ module Result =
 
 [<RequireQualifiedAccess>]
 module PromiseResult =
+    open PromiseImpl
+    
     let bind f x = promise {
         let! x = x
         match x with
