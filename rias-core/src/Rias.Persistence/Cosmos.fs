@@ -2,6 +2,7 @@ namespace Rias.Persistence
 
 module Cosmos =
     open Rias.Common
+    open Rias.Common.Promise
     open Fable.Import.JS
     open Fable.Core.JsInterop
 
@@ -11,7 +12,7 @@ module Cosmos =
         let! cosmos = connectNative dbName
 
         let storage : Storage<Dto> = {
-            load = cosmos.load >> Result.promiseMap (Seq.map Dto.toDto)
+            load = cosmos.load >> Result.pmap (Seq.map Dto.toDto)
             store = Seq.map Dto.toJS >> cosmos.store
         }
         return storage

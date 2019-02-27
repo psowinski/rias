@@ -1,9 +1,10 @@
 ﻿namespace Rias.Common
 
+module Promise =
+    let promise = Promise.PromiseBuilder()
+
 [<RequireQualifiedAccess>]
 module Result =
-    open PromiseImpl
-
     let okValue = (function
                  | Ok v -> v
                  | Error _ -> failwith "There is no Ok value.")
@@ -28,42 +29,22 @@ module Result =
         seq |> Seq.fold unpack (Ok [])
             |> Result.map List.rev
 
-    let promiseMap mapping result = promise {
-        let! x = result
-        return Result.map mapping x
-    }
+    let pmap f x =
+        Promise.map (Result.map f) x
 
-    let promiseBind binder result = promise {
-        let! x = result
-        return Result.bind binder x
-    }
+    let pbind f x =
+        Promise.map (Result.bind f) x
 
-    let promiseBind1of2 f x y = promise {
-        let! x = x
-        return bind1of2 f x y
-    }
+    let pbind1of2 f x y =
+        Promise.map (fun ux -> bind1of2 f ux y) x
 
-[<RequireQualifiedAccess>]
-module PromiseResult =
-    open PromiseImpl
-    
-    let bind f x = promise {
-        let! x = x
-        match x with
-        | Ok ov -> return! f ov
-        | Error ev -> return Error ev
-    }
-
-    let map f x = promise {
-        let! x = x
-        match x with
-        | Ok ov ->
-            let! fResult = f ov 
-            return Ok fResult
-        | Error ev ->
-            return Error ev
-    }
-
+    let asyncbind f x =
+        promise {
+            let! x = x
+            match x with
+            | Ok ov -> return! f ov
+            | Error ev -> return Error ev
+        }   
 
 [<AutoOpen>]
 module ResultBuilder =

@@ -2,10 +2,10 @@
 
 module Book =
     open Rias.Common
+    open Rias.Common.Promise
     open Rias.Domain
     open Rias.Persistence
     open System
-    open Fable.Core
 
     let OpenNewBook () = promise {
         let! storage = Cosmos.connect "rias"
