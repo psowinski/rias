@@ -2,12 +2,17 @@ import { Record } from 'immutable';
 
 const EvnBookOpened = new Record(
   {
+    version: 0,
     name: '',
-    openDate: undefined
+    openDate: new Date('2001-01-01')
   },
   'EvnBookOpened'
 );
 
-export function createEvnBookOpened(data) {
-  return new EvnBookOpened(data);
+export function createEvnBookOpened(state, command) {
+  return new EvnBookOpened({
+    name: command.name,
+    openDate: command.openDate,
+    version: state.version
+  });
 }

@@ -15,9 +15,30 @@ export function zero() {
   return new Book();
 }
 
+function validateStateVersion(state, expectedVersion) {
+  return state.version + 1 === expectedVersion
+    ? ok(state)
+    : error('incorrect state version');
+}
+
+function updateStateVersion(state) {
+  return state.set('version', state.version + 1);
+}
+
+function applyEvent(state, event) {
+  const name = Record.getDescriptiveName(event);
+  switch (name) {
+  case 'EvnBookOpened':
+    return ok();
+  default:
+    return error('unknown event');
+  }
+}
+
 export function apply(state, event) {
-  state;
-  event;
+  return validateStateVersion(state, event.version)
+    .bind(s => applyEvent(s, event))
+    .map(updateStateVersion);
 }
 
 function validateIsZero(state) {
@@ -28,7 +49,7 @@ export function execute(state, command) {
   const name = Record.getDescriptiveName(command);
   switch (name) {
   case 'CmdOpenBook':
-    return validateIsZero(state).map(() => createEvnBookOpened(command));
+    return validateIsZero(state).map(s => createEvnBookOpened(s, command));
   default:
     return error('unknown command');
   }
